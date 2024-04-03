@@ -1,3 +1,15 @@
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
 section#leaderboard {
     background-color: #f5f5f5;
     padding: 2rem;
@@ -6,6 +18,27 @@ section#leaderboard {
 section#leaderboard h1 {
     text-align: center;
     font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+section#leaderboard h1 button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+section#leaderboard h1 button:disabled {
+    background-color: transparent;
+    color: #000000;
+    cursor: not-allowed;
 }
 
 .views {
@@ -91,6 +124,13 @@ section#leaderboard h1 {
     opacity: 0.5;
 }
 
+:not(:has(.leaderboard-card)) .list-view::after {
+    content: 'Getting data, this may take a while...';
+    font-size: 2rem;
+    opacity: 0.5;
+    animation: pulse 2s infinite;
+}
+
 @media (max-width: 768px) {
     section#leaderboard {
         padding: 1rem;
@@ -135,3 +175,4 @@ section#leaderboard h1 {
         align-items: center;
     }
 }
+

@@ -1,3 +1,40 @@
+async function refreshUser(username) {
+    await fetch(`/api/users/${username}/refresh`);
+}
+
+async function refreshData() {
+    let spinner = document.getElementById("refresh-spinner");
+    let leaderboardList = document.getElementById("leaderboard-list");
+
+    if (spinner) {
+        spinner.classList.add("fa-spin");
+        spinner.parentElement.disabled = true;
+    }
+
+    if (leaderboardList) {
+        leaderboardList.innerHTML = "";
+    }
+
+    let response = await fetch("/api/users");
+    let usersList = await response.json();
+
+    for (let userData of usersList) {
+        console.log(`Refreshing: @${userData.username}`);
+        await refreshUser(userData.username);
+    }
+
+    console.log("Refreshing completed");
+
+    if (spinner) {
+        spinner.classList.remove("fa-spin");
+        setTimeout(() => {
+            spinner.parentElement.disabled = false;
+        }, 15000);
+    }
+
+    loadLeaderboard();
+}
+
 function addRankCard(data) {
     let list = document.getElementById("leaderboard-list");
     let cardTemplate = `
