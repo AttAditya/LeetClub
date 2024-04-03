@@ -24,6 +24,14 @@ section#leaderboard h1 {
     gap: 1rem;
 }
 
+section#leaderboard h1 img {
+    height: 6rem;
+    width: 6rem;
+    aspect-ratio: 1/1;
+    border-radius: 1rem;
+    filter: drop-shadow(0 0 0.25rem #000000);
+}
+
 section#leaderboard h1 button {
     font-size: 2rem;
     padding: 0.5rem 1rem;
