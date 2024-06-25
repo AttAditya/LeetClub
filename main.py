@@ -95,7 +95,7 @@ def user_streak(username):
     if not user_data:
         return jsonify({"message": "User not found."}), 404
     
-    user_data["streak"] = streak
+    user_data["streak"] = int(streak)
     database.databases["stats"].put(user_data, username)
 
     return jsonify(user_data)
