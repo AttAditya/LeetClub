@@ -1,6 +1,7 @@
 from typing import Any
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from logging import getLogger, _nameToLevel
 
 from modules import leetcode, read_file, database
@@ -12,6 +13,8 @@ app = Flask(
     static_folder="res",
     static_url_path="/res"
 )
+
+CORS(app)
 
 @app.route("/")
 def index():
