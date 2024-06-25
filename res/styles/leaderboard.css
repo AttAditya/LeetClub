@@ -181,7 +181,7 @@ section#leaderboard h1 button:disabled {
     animation: pulse 2s infinite;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) and (min-width: 381px) {
     section#leaderboard {
         padding: 1rem;
     }
@@ -233,6 +233,7 @@ section#leaderboard h1 button:disabled {
 
     .leaderboard-card .details > .data {
         width: 100%;
+        overflow: hidden;
     }
 
     .leaderboard-card .details .image {
@@ -243,10 +244,13 @@ section#leaderboard h1 button:disabled {
     .leaderboard-card .details > .data .name {
         width: 100%;
         align-items: center;
+        overflow: hidden;
     }
 
     .leaderboard-card .details > .data .info .name h1 {
         font-size: 2rem !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .leaderboard-card .details > .data .info .name h2 {
@@ -255,6 +259,104 @@ section#leaderboard h1 button:disabled {
 
     :not(:has(.leaderboard-card)) .list-view::after {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 380px) and (min-width: 251px) {
+    section#leaderboard {
+        padding: 1rem;
+    }
+
+    section#leaderboard h1 {
+        font-size: 1.5rem;
+        gap: 0.5rem;
+    }
+
+    section#leaderboard h1 img {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    section#leaderboard h1 button {
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .views {
+        padding: 1rem;
+    }
+
+    .list-view {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 2rem;
+    }
+
+    .leaderboard-card {
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: 1.5rem;
+    }
+
+    .details {
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .details > * {
+        width: 100% !important;
+    }
+
+    .leaderboard-card .image {
+        width: 100%;
+    }
+
+    .leaderboard-card .details > .data {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .leaderboard-card .details .image {
+        min-width: 4rem;
+        max-width: 6rem;
+    }
+    
+    .leaderboard-card .details > .data .name {
+        width: 100%;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .leaderboard-card .details > .data .info .name h1 {
+        font-size: 2rem !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .leaderboard-card .details > .data .info .name h2 {
+        font-size: 1.5rem;
+    }
+
+    :not(:has(.leaderboard-card)) .list-view::after {
+        font-size: 1rem;
+    }
+
+    .leaderboard-card .stats {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 250px) {
+    body {
+        display: none;
+    }
+
+    html::after {
+        content: 'This website is not supported on devices with a screen width of less than 250px.';
+        font-size: 2rem;
+        opacity: 0.5;
+        animation: pulse 2s infinite;
     }
 }
 
