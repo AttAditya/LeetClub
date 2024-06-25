@@ -1,4 +1,6 @@
-from flask import Flask, jsonify
+from typing import Any
+
+from flask import Flask, jsonify, request
 from logging import getLogger, _nameToLevel
 
 from modules import leetcode, read_file, database
@@ -53,8 +55,12 @@ def users():
 @app.route("/user/<username>")
 @app.route("/api/users/<username>")
 def user(username):
-    user_data = database.databases["stats"].get(username)
-
+    user_data: Any = database.databases["stats"].get(username)
+    existing_data: Any = database.databases["stats"].get(username)
+    
+    if existing_data:
+        user_data["streak"] = existing_data["streak"]
+    
     if not user_data:
         user_data = leetcode.data(username)
         database.databases["users"].put({"permissions": []}, username)
@@ -66,6 +72,27 @@ def user(username):
 @app.route("/api/users/<username>/refresh")
 def user_refresh(username):
     user_data = leetcode.data(username)
+    existing_data: Any = database.databases["stats"].get(username)
+    
+    if existing_data:
+        user_data["streak"] = existing_data["streak"]
+    
+    database.databases["stats"].put(user_data, username)
+
+    return jsonify(user_data)
+
+@app.route("/user/<username>/streak", methods=["POST"])
+@app.route("/api/users/<username>/streak", methods=["POST"])
+def user_streak(username):
+    data = request.get_json()
+    
+    streak = data.get("streak", 0)
+    user_data: Any = database.databases["stats"].get(username)
+    
+    if not user_data:
+        return jsonify({"message": "User not found."}), 404
+    
+    user_data["streak"] = streak
     database.databases["stats"].put(user_data, username)
 
     return jsonify(user_data)
