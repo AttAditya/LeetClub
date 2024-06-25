@@ -125,7 +125,6 @@ def data(username: str) -> dict:
     
     questions_data = questions_data["acSubmissionNum"][0]["count"]
 
-
     try:
         user_data.update(ranking_data)
     except:

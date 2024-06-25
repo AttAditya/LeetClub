@@ -75,16 +75,14 @@ section#leaderboard h1 button:disabled {
     border-radius: 1rem;
     background-color: #f5f5f5;
     gap: 2rem;
+    text-decoration: none;
+    color: #000000;
 }
 
-.leaderboard-card .image {
-    width: 6rem;
-}
-
-.leaderboard-card .image img {
-    height: 100%;
-    width: 100%;
-    aspect-ratio: 1/1;
+.leaderboard-card:hover {
+    background-color: #ffffff;
+    transition: all 0.3s;
+    box-shadow: 0 0 1rem #000000;
     border-radius: 1rem;
 }
 
@@ -109,11 +107,39 @@ section#leaderboard h1 button:disabled {
     opacity: 0.5;
 }
 
-.leaderboard-card .details > .data {
-    width: 30%;
+.leaderboard-card .details .data, .leaderboard-card .details .stats{
+    width: 50%;
 }
 
-.leaderboard-card .details > .data .name {
+.leaderboard-card .details > .data {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 2rem;
+}
+
+.leaderboard-card .details .image {
+    min-width: 6rem;
+    max-width: 8rem;
+}
+
+.leaderboard-card .details .image img {
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 1rem;
+}
+
+.leaderboard-card .details > .data .info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: left;
+}
+
+.leaderboard-card .details > .data .info .name {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -121,15 +147,31 @@ section#leaderboard h1 button:disabled {
     align-items: start;
 }
 
-.leaderboard-card .details > .data .name h1 {
-    font-size: 2rem !important;
+.leaderboard-card .details > .data .info .name h1 {
+    font-size: 3rem !important;
     font-weight: 900;
     line-height: 2rem;
+    text-align: left;
 }
 
-.leaderboard-card .details > .data .name h2 {
-    font-size: 1.5rem;
+.leaderboard-card .details > .data .info .name .real-name {
+    text-align: left !important;
+    text-wrap: nowrap;
+}
+
+.leaderboard-card .details > .data .info .name h2 {
+    font-size: 2rem;
     opacity: 0.5;
+}
+
+.leaderboard-card .stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    text-align: center;
 }
 
 :not(:has(.leaderboard-card)) .list-view::after {
@@ -142,6 +184,21 @@ section#leaderboard h1 button:disabled {
 @media (max-width: 768px) {
     section#leaderboard {
         padding: 1rem;
+    }
+
+    section#leaderboard h1 {
+        font-size: 2rem;
+        gap: 0.5rem;
+    }
+
+    section#leaderboard h1 img {
+        height: 4rem;
+        width: 4rem;
+    }
+
+    section#leaderboard h1 button {
+        font-size: 1rem;
+        padding: 0.25rem 0.5rem;
     }
 
     .views {
@@ -177,10 +234,27 @@ section#leaderboard h1 button:disabled {
     .leaderboard-card .details > .data {
         width: 100%;
     }
+
+    .leaderboard-card .details .image {
+        min-width: 4rem;
+        max-width: 6rem;
+    }
     
     .leaderboard-card .details > .data .name {
         width: 100%;
         align-items: center;
+    }
+
+    .leaderboard-card .details > .data .info .name h1 {
+        font-size: 2rem !important;
+    }
+
+    .leaderboard-card .details > .data .info .name h2 {
+        font-size: 1.5rem;
+    }
+
+    :not(:has(.leaderboard-card)) .list-view::after {
+        font-size: 1rem;
     }
 }
 
