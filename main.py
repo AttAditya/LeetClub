@@ -100,6 +100,17 @@ def user_streak(username):
 
     return jsonify(user_data)
 
+@app.route("/user/<username>/remove/<cred_pass>")
+@app.route("/api/users/<username>/remove/<cred_pass>")
+def user_remove(username, cred_pass):
+    if not database.databases["creds"].get(cred_pass):
+        return jsonify({"message": "Invalid credentials."}), 403
+    
+    database.databases["stats"].delete(username)
+    database.databases["users"].delete(username)
+
+    return jsonify({"message": "User removed, data deleted."})
+
 if __name__ == "__main__":
     config: dict = {
         "host": "0.0.0.0",

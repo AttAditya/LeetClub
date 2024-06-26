@@ -4,6 +4,7 @@ deta = Deta()
 
 databases = {
     "users": deta.Base("users"),
-    "stats": deta.Base("stats")
+    "stats": deta.Base("stats"),
+    "creds": deta.Base("creds")
 }
 
