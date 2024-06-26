@@ -111,6 +111,10 @@ def user_remove(username, cred_pass):
 
     return jsonify({"message": "User removed, data deleted."})
 
+@app.route("/leetmate/policy")
+def policy():
+    return read_file("leetmate/policy")
+
 if __name__ == "__main__":
     config: dict = {
         "host": "0.0.0.0",
